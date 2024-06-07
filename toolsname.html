@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tools description</title>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Tools description</title>
+         <style>
+            table{
+                border-collapse: collapse;
+                width: 30%;
+                margin: 0 auto;
+            }
+            th, td {
+                text-align: left;
+                padding: 8px; /* Add padding to table cells */
+            }
+            th {
+                background-color: #4CAF50;
+                color: white;
+            }
+            #link-container {
+                text-align: center;
+    
+            }
+        </style>
+    </head>
+    <body>
+        <marquee behavior="scroll" direction="left">
+            <h2>Available Tools</h2>
+        </marquee>
+</head>
+<body>
+    <table id="tools-table">
+        <tr>
+            <th>tid</th>
+            <th>toolname</th>
+        </tr>
+        
+            
+    
+    </table>
+    <script>
+        fetch('http://localhost:3000/users')
+            .then(response => response.json())
+            .then(data => {
+                const table = document.getElementById('tools-table');
+                data.forEach(rowData => {
+                    const row =
+                    document.createElement('tr');
+Object.values(rowData).forEach(value => {
+const td = document.createElement('td');
+td.textContent = value;
+row.appendChild(td);
+});
+table.appendChild(row);
+});
+})
+.catch(error => console.error(error));
+        // create a new PostgreSQL connection
+        const { Client } = require('pg');
+        const client = new Client({
+            user: 'postgres',
+            host: 'localhost',
+            database: 'postgres',
+            password: '23',
+            port: 5432,
+        });
+
+        // connect to the PostgreSQL database
+        client.connect();
+
+        // retrieve data from the "tools" table
+        const query = 'SELECT  FROM tdet ;';
+
+        client.query(query, (err, res) => {
+            if (err) {
+                console.error(err);
+                return;
+            }
+
+            // create table element
+            const table = document.createElement('table');
+
+            // create table header row
+            const headerRow = document.createElement('tr');
+            const headings = ['tid', 'toolname'];
+            headings.forEach(heading => {
+                const th = document.createElement('th');
+                th.textContent = heading;
+                headerRow.appendChild(th);
+            });
+            table.appendChild(headerRow);
+
+            // create table rows
+            res.rows.forEach(rowData => {
+                const row = document.createElement('tr');
+                Object.values(rowData).forEach(value => {
+                    const td = document.createElement('td');
+                    td.textContent = value;
+                    row.appendChild(td);
+                });
+                table.appendChild(row);
+            });
+
+            // append table to the DOM
+            document.body.appendChild(table);
+
+            // disconnect from the PostgreSQL database
+            client.end();
+        });
+        </script>
+</body>
+</html>
+
+

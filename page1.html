@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="manifest.json">
+<link rel="serviceworker" href="serviceworker.js">
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('serviceworker.js')
+      .then(function(registration) {
+        console.log('Service worker registered successfully');
+      })
+      .catch(function(error) {
+        console.log('Service worker registration failed:', error);
+      });
+  }
+</script>
+
+<style>
+  
+.dropbtn {
+  background-color: #04a2aa;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #3e858e;
+}
+
+#myInput {
+  box-sizing: border-box;
+  background-image: url('searchicon.png');
+  background-position: 14px 12px;
+  background-repeat: no-repeat;
+  font-size: 16px;
+  padding: 14px 20px 12px 45px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
+
+#myInput:focus {outline: 3px solid #ddd;}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f6f6f6;
+  min-width: 230px;
+  overflow: auto;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+</style>
+</head>
+<body>
+
+<h2>Tools Description</h2>
+
+<div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">Search Tools</button>
+  <div id="myDropdown" class="dropdown-content">
+    <input type="text" placeholder="Search" id="myInput" onkeyup="filterFunction()">
+    <a href="navi1.html" onclick="selectOption('PostgreSQL')">PostgreSQL</a>
+    <a href="navi2.html" onclick="selectOption('Postman')">Postman</a>
+    <a href="navi3.html" onclick="selectOption('Tomcat')">Tomcat</a>
+    <a href="navi4.html" onclick="selectOption('ApacheHTTPserver')">ApacheHTTPserver</a>
+    <a href="navi5.html" onclick="selectOption('MYSQL')">MYSQL</a>
+    <a href="navi6.html" onclick="selectOption('Node.js')">Node.js</a>
+    <a href="navi7.html" onclick="selectOption('Netbeans')">Netbeans</a>
+    <a href="navi8.html" onclick="selectOption('Atoms')">Atoms</a>
+    <a href="navi9.html" onclick="selectOption('VS Code')">VS Code</a>
+    <a href="navi10.html" onclick="selectOption('Java')">Java</a>
+    <a href="navi11.html" onclick="selectOption('AngularJS')">AngularJS</a>
+    <a href="navi12.html" onclick="selectOption('Blender')">Blender</a>
+    <a href="navi13.html" onclick="selectOption('MariaDB')">MariaDB</a>
+    <a href="navi14.html" onclick="selectOption('XAMPP')">XAMPP</a>
+    <a href="navi15.html" onclick="selectOption('Brackets')">Brackets</a>
+    <a href="navi16.html" onclick="selectOption('phpMyadmin')">phpMyadmin</a>
+    <a href="navi17.html" onclick="selectOption('mangoDB')">mangoDB</a>
+    <a href="navi18.html" onclick="selectOption('Git Lab')">Git Lab</a>
+    <a href="navi19.html" onclick="selectOption('Glassfish')">Glassfish</a>
+    <a href="navi20.html" onclick="selectOption('Selenium')">Selenium</a>
+  </div>
+</div>
+<script>
+
+
+   
+            // create table element
+            const table = document.createElement('table');
+
+            // create table header row
+            const headerRow = document.createElement('tr');
+            const headings = ['toolname', 'minor_version', 'major_version'];
+            headings.forEach(heading => {
+                const th = document.createElement('th');
+                th.textContent = heading;
+                headerRow.appendChild(th);
+            });
+            table.appendChild(headerRow);
+
+            // create table rows
+            data.forEach(rowData => {
+                const row = document.createElement('tr');
+                Object.values(rowData).forEach(value => {
+                    const td = document.createElement('td');
+                    td.textContent = value;
+                    row.appendChild(td);
+                });
+                table.appendChild(rowData);
+            });
+
+            // append table to the DOM
+            document.body.appendChild(table);
+
+            fetch('http://localhost:4000/tools')
+            .then(response => response.json())
+            .then(data => {
+                const table = document.getElementById('det');
+                data.forEach(rowData => {
+                    const row =
+                    document.createElement('tr');
+Object.values(rowData).forEach(value => {
+const td = document.createElement('td');
+td.textContent = value;
+row.appendChild(td);
+});
+table.appendChild(row);
+});
+})
+.catch(error => console.error(error)); 
+        
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+  const selectElement = document.getElementById("myDropdown");
+
+
+}
+
+function filterFunction() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  div = document.getElementById("myDropdown");
+  a = div.getElementsByTagName("a");
+  for (i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+}
+</script>
+
+</body>
+</html>

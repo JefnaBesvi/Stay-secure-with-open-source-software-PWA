@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> PostgreSQL</title>
+     <style>
+        table{
+            border-collapse: collapse;
+            width: 30%;
+            margin: 0 auto;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px; /* Add padding to table cells */
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #link-container {
+            text-align: center;
+        }
+        /* Popup container */
+        .popup {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        /* Popup text */
+        .popup .popuptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 8px 0;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        /* added code */
+        transform: translateX(-50%);
+        left: 50%;
+        margin-left: -60px;
+      }
+        
+        /* Show the popup text */
+        .popup .show {
+            visibility: visible;
+            -webkit-animation: fadeIn 1s;
+            animation: fadeIn 1s;
+        }
+        
+        /* Fade in animation */
+        @-webkit-keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+        
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+        
+     #popup-container {
+    text-align: center;
+  }
+</style>
+        
+    </style>
+</head>
+<body>
+    <table id="tools-table">
+        <tr>
+            <th>toolname</th>
+            <th>minor_version</th>
+            <th>major_version</th>
+        </tr>
+    </table>
+    <div id="popup-container">
+      <div class="popup" onclick="myFunction()">Click here for license and date!
+          <span class="popuptext" id="myPopup">PostgreSQL License, 2023-11-11</span>
+      </div>
+    <script>
+        function myFunction() {
+            var popup = document.getElementById("myPopup");
+            popup.classList.toggle("show");
+        }
+
+        fetch('http://localhost:3000/tools')
+         .then(response => response.json())
+         .then(data => {
+             const table = document.getElementById('tools-table');
+             data.forEach(rowData => {
+                 if (rowData.toolname === 'PostgreSQL') {
+                     const row = document.createElement('tr');
+                     Object.values(rowData).forEach(cellData => {
+                         const cell = document.createElement('td');
+                         cell.innerText = cellData;
+                         row.appendChild(cell);
+                     });
+                     table.appendChild(row);
+                 }
+             });
+         })
+         .catch(error => console.error(error));
+  
+     </script>  
+</body>
+</html>

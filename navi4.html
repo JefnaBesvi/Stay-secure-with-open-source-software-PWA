@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> ApacheHTTPserver</title>
+     <style>
+        table{
+            border-collapse: collapse;
+            width: 30%;
+            margin: 0 auto;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px; /* Add padding to table cells */
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #link-container {
+            text-align: center;
+
+        }
+    </style>
+</head>
+<body>
+    <table id="tools-table">
+        <tr>
+            <th>toolname</th>
+            <th>minor_version</th>
+            <th>major_version</th>
+        </tr>
+    </table>
+ <div id="link-container">
+            <td colspan="3" id="link-container"></td>
+            <a href="https://httpd.apache.org/docs/2.4/">Click here to know about license and other details</a>
+        </div>
+    <script>
+        fetch('http://localhost:3000/tools')
+         .then(response => response.json())
+         .then(data => {
+             const table = document.getElementById('tools-table');
+             data.forEach(rowData => {
+                 if (rowData.toolname === 'ApacheHTTPserver') {
+                     const row = document.createElement('tr');
+                     Object.values(rowData).forEach(cellData => {
+                         const cell = document.createElement('td');
+                         cell.innerText = cellData;
+                         row.appendChild(cell);
+                     });
+                     table.appendChild(row);
+                 }
+             });
+         })
+         .catch(error => console.error(error));
+     </script>  
+</body>
+</html>

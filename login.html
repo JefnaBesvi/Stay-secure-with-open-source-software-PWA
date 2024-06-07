@@ -1,0 +1,96 @@
+<html>
+<head>
+	<title>Login</title><!DOCTYPE html>
+	<html>
+	<head>
+		<title>Login</title>
+		<link rel="stylesheet" href="page1.html">
+		<style>
+			body {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				height: 100vh;
+				background-color: #E9967A;
+			}
+		</style>
+	</head>
+	<body>
+		<form>
+			<div class="imgcontainer"></div>
+			<div class="container">
+				<label for="email"><b>Email</b></label><br><br>
+				<input type="text" placeholder="Enter valid Email" name="email" id="email" required><br><br>
+				<label for="psw"><b>Password</b></label><br><br>
+				<input type="password" placeholder="Enter Password" name="psw" id="password" required><br><br>
+				<button type="button" onclick="auth()">Login</button><br><br>
+				<label>
+					<input type="checkbox" checked="checked" name="remember"> Remember me<br><br>
+				</label>
+			</div>
+			<div class="container">
+				<button type="button" class="cancelbtn">Cancel</button><br><br>
+			</div>
+			<script>
+				function auth() {
+					var email = document.getElementById("email").value;
+					var password = document.getElementById("password").value;
+					if (email === "admin@gmail.com" && password === "admin123") {
+						window.location.href = "page1.html";
+						alert("Login successfully");
+					} else {
+						alert("Invalid Information");
+					}
+				}
+			</script>
+		</form>
+	</body>
+	</html>
+	
+	<link rel="stylesheet" href="page1.html">
+	<style>
+		body {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+			background-color: #E9967A;
+		}
+	</style>
+</head>
+<body>
+	<form action="page1.html" method="post">
+		<div class="imgcontainer"></div>
+		<div class="container">
+			<label for="email"><b>Email</b></label><br><br>
+			<input type="text" placeholder="Enter valid Email" name="email" required><br><br>
+			<label for="psw"><b>Password</b></label><br><br>
+			<input type="password" placeholder="Enter Password" name="psw" required><br><br>
+			<button type="submit">Login</button><br><br>
+			<label>
+				<input type="checkbox" checked="checked" name="remember"> Remember me<br><br>
+			</label>
+		</div>
+		<div class="container">
+			<button type="button" class="cancelbtn">Cancel</button><br><br>
+		</div>
+		<script>
+			
+			function auth(){
+				var Email=document.getElementById("Email").value;
+				var password=document.getElementById("password").value;
+				if(Email=="admin@gmail.com"&& Password=="admin123"){
+					window.location.assign("page1.html");
+					alert("Login successfully");
+				}
+				else{
+					alert("Invalid Information");
+					return;
+				}
+			}
+		</script>
+	</form>
+</body>
+</html>
